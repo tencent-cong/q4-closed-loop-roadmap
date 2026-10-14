@@ -3,7 +3,7 @@
 抖音 Q4 TOP1500 / 10 月榜 与 腾讯闭环（直播 / 小店）去年 Q4 按天消耗的节点 × 赛道对比。
 
 ## 页面（下载后用浏览器直接打开）
-- `q4-closed-loop-compare-lite.html`：精简版对比表，增量机会品在前、存量品在后，不含消耗数据
+- `q4-closed-loop-compare-lite.html`：单页机会地图：增量机会品在前、存量品在后，每格 ≤ 7 个，不含消耗数据
 - `q4-closed-loop-compare-v2.html`：赛道 × 节点 对比表，存量品 / 增量机会品同格展示，可切换直播 / 小店
 - `q4-closed-loop-effective-days.html`：类目有效跑量周期看板（有效天数、在跑日耗、时间轴）
 - `q4-closed-loop-roadmap.html`：早期 Road Map 总览
