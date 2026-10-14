@@ -26,25 +26,23 @@ th{background:#153a5c;color:#fff;text-align:left;padding:8px 10px;white-space:no
 td{vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--line);border-right:1px solid #f0f3f7;line-height:1.4}tr:last-child td{border-bottom:none}
 .tk{background:#fafbfd;border-right:2px solid var(--line)!important}.tk b{display:block;color:var(--navy);font-size:13.5px}.tk .avg{font-size:10.5px;color:#98a2b3;margin-top:3px}
 .chip{display:inline-block;padding:2px 7px;margin:2px 3px 0 0;border-radius:6px;font-size:11.5px;line-height:1.35;border:1px solid transparent;font-weight:600;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;vertical-align:top}
-.inc{background:#fff1dd;color:#9a5800;border-color:#f3d6a3}.cp{background:#fff7ed;color:#9a5800;border:1px dashed #e9a23b}.nw{background:#f3eefc;color:#6b3fc0;border-color:#dccdf6}.stk{background:#eef2f7;color:#3b4a5e;border-color:#dde3ec;font-weight:550}
+.inc{background:#fff4d6;color:#8a5a00;border-color:#e9b949}.stk{background:#eef2f7;color:#3b4a5e;border-color:#dde3ec;font-weight:550}
 .sep{display:block;height:0;margin:3px 0 1px;border-top:1px dashed #e4e9f0}
 .empty{color:#c0c7d2}
 .note{font-size:11.5px;line-height:1.6;color:#667085;margin-top:8px}.note b{color:var(--navy)}
 </style></head><body><div class="wrap">
-<div class="top"><div><div class="eyebrow">Q4 CLOSED-LOOP · OPPORTUNITY MAP</div><h1>Q4 闭环：赛道 × 节点 机会地图</h1><p>每格先列竞媒（抖音 Q4 TOP1500 / 10 月榜）在跑、该链路未投放的增量机会品，再列该链路去年 Q4 已跑的存量品；每格最多 7 个。清洁工具含物理清洁与洗浴工具，化学清洁与手足护理个护类目已剔除，保鲜袋/保鲜膜归收纳。</p></div>
+<div class="top"><div><div class="eyebrow">Q4 CLOSED-LOOP · OPPORTUNITY MAP</div><h1>Q4 闭环：赛道 × 节点 机会地图</h1><p>每格上半部分为新增机会品（抖音在投、闭环未投放），下半部分为去年已跑爆品；每格最多 7 个。</p></div>
 <div class="ctrl"><button class="tab active" data-l="live">直播</button><button class="tab" data-l="shop">小店（直购）</button></div></div>
-<div class="legend"><span><i style="background:#fff1dd;border:1px solid #f3d6a3"></i>增量 · 抖音在投，闭环未投放</span><span><i style="background:#fff7ed;border:1px dashed #e9a23b"></i>增量 · 另一链路已跑，可直接复制</span><span><i style="background:#f3eefc;border:1px solid #dccdf6"></i>增量 · 10 月榜新增机会品</span><span><i style="background:#eef2f7;border:1px solid #dde3ec"></i>存量 · 去年 Q4 已跑</span></div>
+<div class="legend"><span><i style="background:#fff4d6;border:1px solid #e9b949"></i>新增机会品</span><span><i style="background:#eef2f7;border:1px solid #dde3ec"></i>去年已跑爆品</span></div>
 <div class="table-wrap"><table id="mx"><thead><tr><th class="tk">赛道</th><th>① 换季启动<small>寒露/霜降 10.01－10.20</small></th><th>② 双11<small>含重阳 10.21－11.11</small></th><th>③ 立冬/小雪<small>保暖峰值 11.12－11.30</small></th><th>④ 双12/大雪冬至<small>年终收官 12.01－12.22</small></th><th>⑤ 春节大扫除·年货<small>12.23－1月中</small></th></tr></thead><tbody id="mxb"></tbody></table></div>
 <div class="note" id="mxnote"></div></div>
 <script>
 const R=__R__;const OM=__OM__;const CAP=7,INC_MAX=4;
 const TRACKS=["功效品","清洁工具","收纳用品","厨具","餐具水具","家居家纺","家居工艺品","生活日用其他"];
 let L="live";const O=()=>L==="live"?"shop":"live";const LN={live:"直播",shop:"小店"};
-function st(r){if(r[L])return["存量 · 去年 Q4 已跑","stk",1];
+function st(r){if(r[L])return["去年已跑爆品","stk",1];
  if(r[L+"_old"])return null;
- if(r.oct_new)return["增量 · 10 月榜新增机会品","nw",2];
- if(r[O()])return["增量 · "+LN[O()]+"链路已跑，可直接复制","cp",2];
- return["增量 · 抖音在投，闭环未投放","inc",2]}
+ return["新增机会品","inc",2]}
 const chip=(r,[nm,cls])=>`<span class="chip ${cls}" title="${nm}｜${r.name}">${r.name}</span>`;
 function render(){document.querySelectorAll("[data-l]").forEach(b=>b.classList.toggle("active",b.dataset.l===L));
  let h="";let cnt={s:0,i:0,si:0,ss:0};
@@ -62,7 +60,7 @@ function render(){document.querySelectorAll("[data-l]").forEach(b=>b.classList.t
    if(!si.length&&!ss.length)h+=`<span class="empty">—</span>`;h+=`</td>`}
   h+=`</tr>`}
  document.getElementById("mxb").innerHTML=h;
- document.getElementById("mxnote").innerHTML=`<b>${LN[L]}链路</b>：共识别增量机会品 ${cnt.i} 个、存量品 ${cnt.s} 个，图中按每格 ≤ ${CAP} 个展示 TOP 项（增量优先，展示 ${cnt.si} / 存量 ${cnt.ss}）。增量按抖音 10 月榜热度排序，存量按该链路去年在跑规模排序；虚线框为${LN[O()]}链路已跑通、最易复制的一批，紫色为 10 月榜新上榜的真增量。完整清单见原版对比表。`}
+ document.getElementById("mxnote").innerHTML=`<b>${LN[L]}链路</b>：新增机会品 ${cnt.i} 个，去年已跑爆品 ${cnt.s} 个，每格最多展示 7 个 TOP 项。新增机会品 = 抖音在投、${LN[L]}链路未投放的品；去年已跑爆品 = ${LN[L]}链路去年 Q4 有有效消耗的品。完整清单见原版对比表。`}
 document.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{L=b.dataset.l;render()});
 render();
 </script></body></html>'''
